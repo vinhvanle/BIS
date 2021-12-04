@@ -8,7 +8,7 @@ width=800
 height=600
 
 screen=pygame.display.set_mode((width,height))
-carimg=pygame.image.load("car1.jpg")      #xe của người chơi 
+carimg=pygame.image.load("car.jpg")      #xe của người chơi
 
 car_width=56                                                             #Chiều dài của xe 
 
