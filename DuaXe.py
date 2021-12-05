@@ -3,45 +3,47 @@ pygame.init() #khởi tạo
 
 import time   #Khởi tạo thời gian trong game
 import random
+import os
 
 width=800
 height=600
 
 screen=pygame.display.set_mode((width,height))
-carimg=pygame.image.load("car.jpg")      #xe của người chơi
+carimg=pygame.image.load(os.getcwd() + "\\img/ferrari.png")      #xe của người chơi
 
-car_width=56                                                             #Chiều dài của xe 
+car_width=45                                                           #Chiều dài của xe
 
-grass=pygame.image.load("grass.jpg")      #Đua hình ảnh cỏ vào game 
-vang=pygame.image.load("vang.png") 
-strip=pygame.image.load("strip.jpg")
+grass=pygame.image.load(os.getcwd() +"\\img/grass_PNG4934.png")      #Đua hình ảnh cỏ vào game
+grass2=pygame.image.load(os.getcwd() +"\\img/grass.png")
+vang=pygame.image.load(os.getcwd() +"\\img/vang.png")
+strip=pygame.image.load(os.getcwd() +"\\img/strip.jpg")
 clock=pygame.time.Clock()                 #khóa không cho xe chạy ra ngoài
 
 #Chữ kết thúc game
 myfont=pygame.font.SysFont("None",100)
-render_text= myfont.render("Vi Pham Giao Thông",1,(0,0,0))
+render_text= myfont.render("Game Over",1,(0,0,0))
 xe_text=myfont.render("Tai Nan",1,(0,0,0))
 pygame.display.set_caption("DuaXe")       #game đua xe
 #Thêm các xe vào gamwe để random 
 def obstacle(obs_x,obs_y,obs):
     if obs==0:
-        obs_pic=pygame.image.load("car2.png")
+        obs_pic=pygame.image.load(os.getcwd() +"\\img/car.png")
     elif obs==1:
-        obs_pic=pygame.image.load("car3.jpg")
+        obs_pic=pygame.image.load(os.getcwd() +"\\img/car1.png")
     elif obs==2:
-        obs_pic=pygame.image.load("car4.png")
+        obs_pic=pygame.image.load(os.getcwd() +"\\img/car3.png")
     elif obs==3:
-        obs_pic=pygame.image.load("car5.png")
+        obs_pic=pygame.image.load(os.getcwd() +"\\img/car5.png")
     elif obs==4:
-        obs_pic=pygame.image.load("car6.png")
+        obs_pic=pygame.image.load(os.getcwd() +"\\img/car6.png")
     elif obs==5:
-        obs_pic=pygame.image.load("car7.png")
+        obs_pic=pygame.image.load(os.getcwd() +"\\img/car7.png")
     screen.blit(obs_pic,(obs_x,obs_y)) 
 
 #Đưa hình cỏ và làn đường vô 
 def background():
-	screen.blit(grass,(0,0))
-	screen.blit(grass,(700,0))
+	screen.blit(grass,(-30,0))
+	screen.blit(grass2,(700,0))
 	screen.blit(vang,(400,0))
 	screen.blit(vang,(400,100))
 	screen.blit(vang,(400,200))
@@ -70,8 +72,8 @@ def game_loop():
 	y_change=0
 	obs_x= random.randrange(200,650)
 	obs_y= -750
-	enemy_width= 56
-	enemy_height= 125
+	enemy_width= 45
+	enemy_height= 96
 #__________________#
 	while not running:
 		for event in pygame.event.get():
@@ -90,21 +92,21 @@ def game_loop():
 		x +=x_change		
 		screen.fill((119,119,119))               #bảng tô màu xám
 		background()
-	#RAndom kẻ thù 
+	#RAndom reverse vehicle
 		obs_y -= (obstacle_speed/4)
 		obstacle(obs_x,obs_y,obs)
 		obs_y += obstacle_speed
 		car(x,y)                                 #xuất hiện xe trong background
 	
-	#Không cho xe ra ngoài 
+	#Create the limit line for the roadside
 		if x>680 - car_width or x<120:                                         #Khóa không cho xe chạy ra ngoài
 			screen.blit(render_text,(100,200))
 			pygame.display.update()
 			time.sleep(5)
 			game_loop()  
-	#Thêm nhiều xe chạy
+	#More cars, Random cars
 		if obs_y>height:
-			obs_y= 0-enemy_height                   #random 1 xe 
+			obs_y= 0-enemy_height                   #random 1 car
 			obs_x= random.randrange(170, width-170) 
 			obs= random.randrange(0,6)
 
@@ -118,6 +120,6 @@ def game_loop():
 		pygame.display.update()
 		clock.tick(100)
 
-game_loop()		        
+game_loop()
 pygame.quit()        
 quit()
