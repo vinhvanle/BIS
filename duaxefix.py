@@ -15,11 +15,11 @@ import random
 
 
 gamedisplays=pygame.display.set_mode((display_width,display_height))
-pygame.display.set_caption("CAR GAME")
+pygame.display.set_caption("car game")
 clock=pygame.time.Clock()
 carimg=pygame.image.load('ferrari.png')
-backgroundpic=pygame.image.load("grass.png")
-yellow_strip=pygame.image.load("vang.png")
+backgroundpic=pygame.image.load("grass.jpg")
+yellow_strip=pygame.image.load("yellow_strip.jpg")
 strip=pygame.image.load("strip.jpg")
 intro_background=pygame.image.load("background.jpg")
 instruction_background=pygame.image.load("background2.jpg")
@@ -219,22 +219,23 @@ def obstacle(obs_startx,obs_starty,obs):
     if obs==0:
         obs_pic=pygame.image.load("car1.png")
     elif obs==1:
-        obs_pic=pygame.image.load("car.png")
+        obs_pic=pygame.image.load("car2.png")
     elif obs==2:
-        obs_pic=pygame.image.load("car3.png")
+        obs_pic=pygame.image.load("car2.png")
     elif obs==3:
-        obs_pic=pygame.image.load("car7.png")
+        obs_pic=pygame.image.load("car4.png")
     elif obs==4:
         obs_pic=pygame.image.load("car5.png")
     elif obs==5:
         obs_pic=pygame.image.load("car6.png")
-
+    elif obs==6:
+        obs_pic=pygame.image.load("car7.png")
     gamedisplays.blit(obs_pic,(obs_startx,obs_starty))
 
 def score_system(passed,score):
     font=pygame.font.SysFont(None,25)
-    text=font.render("Passed:"+str(passed),True,black)
-    score=font.render("Score:"+str(score),True,red)
+    text=font.render("Passed"+str(passed),True,black)
+    score=font.render("Score"+str(score),True,red)
     gamedisplays.blit(text,(0,50))
     gamedisplays.blit(score,(0,30))
 
