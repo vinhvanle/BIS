@@ -1,3 +1,4 @@
+
 import pygame
 pygame.init()
 gray=(119,118,110)
@@ -12,17 +13,19 @@ display_width=800
 display_height=600
 import time
 import random
-
+import sys
+import os
 
 gamedisplays=pygame.display.set_mode((display_width,display_height))
-pygame.display.set_caption("car game")
+pygame.display.set_caption("Car racing game")
 clock=pygame.time.Clock()
-carimg=pygame.image.load('ferrari.png')
-backgroundpic=pygame.image.load("grass.jpg")
-yellow_strip=pygame.image.load("yellow_strip.jpg")
-strip=pygame.image.load("strip.jpg")
-intro_background=pygame.image.load("background.jpg")
-instruction_background=pygame.image.load("background2.jpg")
+carimg=pygame.image.load(os.getcwd() + '\\images/ferrari.png')
+backgroundpic=pygame.image.load(os.getcwd() + '\\images/grass.png')
+backgroundpic2=pygame.image.load(os.getcwd() + '\\images/grass2.png')
+yellow_strip=pygame.image.load(os.getcwd() + '\\images/yellow_strip.jpg')
+strip=pygame.image.load(os.getcwd() + '\\images/strip.jpg')
+intro_background=pygame.image.load(os.getcwd() + '\\images/background.jpg')
+instruction_background=pygame.image.load(os.getcwd() + '\\images/background2.jpg')
 car_width=56
 pause=False
 
@@ -145,9 +148,9 @@ def countdown_background():
     font=pygame.font.SysFont(None,25)
     x=(display_width*0.45)
     y=(display_height*0.8)
-    gamedisplays.blit(backgroundpic,(0,0))
-    gamedisplays.blit(backgroundpic,(0,200))
-    gamedisplays.blit(backgroundpic,(0,400))
+    gamedisplays.blit(backgroundpic2,(-30,0))
+    gamedisplays.blit(backgroundpic2,(-30,200))
+    gamedisplays.blit(backgroundpic2,(-30,400))
     gamedisplays.blit(backgroundpic,(700,0))
     gamedisplays.blit(backgroundpic,(700,200))
     gamedisplays.blit(backgroundpic,(700,400))
@@ -217,19 +220,19 @@ def countdown():
 
 def obstacle(obs_startx,obs_starty,obs):
     if obs==0:
-        obs_pic=pygame.image.load("car1.png")
+        obs_pic=pygame.image.load(os.getcwd() + "\\images/car1.png")
     elif obs==1:
-        obs_pic=pygame.image.load("car2.png")
+        obs_pic=pygame.image.load(os.getcwd() + "\\images/car2.png")
     elif obs==2:
-        obs_pic=pygame.image.load("car2.png")
+        obs_pic=pygame.image.load(os.getcwd() + "\\images/car3.png")
     elif obs==3:
-        obs_pic=pygame.image.load("car4.png")
+        obs_pic=pygame.image.load(os.getcwd() + "\\images/car4.png")
     elif obs==4:
-        obs_pic=pygame.image.load("car5.png")
+        obs_pic=pygame.image.load(os.getcwd() + "\\images/car5.png")
     elif obs==5:
-        obs_pic=pygame.image.load("car6.png")
+        obs_pic=pygame.image.load(os.getcwd() + "\\images/car6.png")
     elif obs==6:
-        obs_pic=pygame.image.load("car7.png")
+        obs_pic=pygame.image.load(os.getcwd() + "\\images/car7.png")
     gamedisplays.blit(obs_pic,(obs_startx,obs_starty))
 
 def score_system(passed,score):
@@ -259,9 +262,9 @@ def crash():
 
 
 def background():
-    gamedisplays.blit(backgroundpic,(0,0))
-    gamedisplays.blit(backgroundpic,(0,200))
-    gamedisplays.blit(backgroundpic,(0,400))
+    gamedisplays.blit(backgroundpic2,(-30,0))
+    gamedisplays.blit(backgroundpic2,(-30,200))
+    gamedisplays.blit(backgroundpic2,(-30,400))
     gamedisplays.blit(backgroundpic,(700,0))
     gamedisplays.blit(backgroundpic,(700,200))
     gamedisplays.blit(backgroundpic,(700,400))
@@ -324,10 +327,11 @@ def game_loop():
         gamedisplays.fill(gray)
 
         rel_y=y2%backgroundpic.get_rect().width
-        gamedisplays.blit(backgroundpic,(0,rel_y-backgroundpic.get_rect().width))
+        gamedisplays.blit(backgroundpic2,(-30,rel_y-backgroundpic2.get_rect().width))
         gamedisplays.blit(backgroundpic,(700,rel_y-backgroundpic.get_rect().width))
+
         if rel_y<800:
-            gamedisplays.blit(backgroundpic,(0,rel_y))
+            gamedisplays.blit(backgroundpic2,(-30,rel_y))
             gamedisplays.blit(backgroundpic,(700,rel_y))
             gamedisplays.blit(yellow_strip,(400,rel_y))
             gamedisplays.blit(yellow_strip,(400,rel_y+100))
