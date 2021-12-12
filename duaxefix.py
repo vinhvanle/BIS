@@ -17,18 +17,35 @@ import sys
 import os
 
 gamedisplays=pygame.display.set_mode((display_width,display_height))
+
 pygame.display.set_caption("Car racing game")
+
 clock=pygame.time.Clock()
+
 carimg=pygame.image.load(os.getcwd() + '\\images/ferrari.png')
+
 backgroundpic=pygame.image.load(os.getcwd() + '\\images/grass.png')
+
 backgroundpic2=pygame.image.load(os.getcwd() + '\\images/grass2.png')
+
 yellow_strip=pygame.image.load(os.getcwd() + '\\images/yellow_strip.jpg')
+
 strip=pygame.image.load(os.getcwd() + '\\images/strip.jpg')
+
 intro_background=pygame.image.load(os.getcwd() + '\\images/background.jpg')
+
 instruction_background=pygame.image.load(os.getcwd() + '\\images/background2.jpg')
+
 car_width=56
+
 pause=False
 
+#Configure sound
+welcome_1 = pygame.mixer.Sound(os.getcwd() + '\\audio/intro1.wav')
+welcome_2 = pygame.mixer.Sound(os.getcwd() + '\\audio/intro2.wav')
+audio_crash = pygame.mixer.Sound(os.getcwd() + '\\audio/car_crash.wav')
+audio_ignition = pygame.mixer.Sound(os.getcwd() + '\\audio/ignition.wav')
+pygame.mixer.music.load(os.getcwd()+'\\audio/running.wav')
 def intro_loop():
     intro=True
     while intro:
@@ -177,7 +194,8 @@ def countdown_background():
 
 def countdown():
     countdown=True
-
+    pygame.mixer.music.pause()
+    pygame.mixer.Sound.play(audio_ignition)
     while countdown:
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
@@ -258,6 +276,8 @@ def message_display(text):
 
 
 def crash():
+    pygame.mixer.music.stop()
+    pygame.mixer.Sound.play(audio_crash)
     message_display("YOU CRASHED")
 
 
@@ -286,6 +306,7 @@ def car(x,y):
 
 def game_loop():
     global pause
+    pygame.mixer.music.play(-1)
     x=(display_width*0.45)
     y=(display_height*0.8)
     x_change=0
