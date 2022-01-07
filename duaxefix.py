@@ -335,9 +335,9 @@ def game_loop():
                     x_change=-5
                 if event.key==pygame.K_RIGHT:
                     x_change=5
-                if event.key==pygame.K_a:
+                if event.key==pygame.K_w:
                     obstacle_speed+=2
-                if event.key==pygame.K_b:
+                if event.key==pygame.K_s:
                     obstacle_speed-=2
             if event.type==pygame.KEYUP:
                 if event.key==pygame.K_LEFT or event.key==pygame.K_RIGHT:
